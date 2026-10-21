@@ -1,32 +1,7 @@
 {
-  "commit": "48d425c9120726c4c8bd6840a5b837c392968231",
-  "generated": "2026-10-16T17:38:59.518Z",
+  "commit": "e9ed42aa351a86331dcbc52e8b8ff46be07c476c",
+  "generated": "2026-10-21T18:11:07.433Z",
   "metadata": [
-    {
-      "__outstatic": {
-        "commit": "1ef37f4cae6a43029e56ab32955ec48f31a21af7",
-        "hash": "688741329",
-        "path": "outstatic/content/_singletons/site.md"
-      },
-      "author": {
-        "name": "The Athos Group",
-        "picture": ""
-      },
-      "collection": "_singletons",
-      "footerCopyright": "The Athos Group, LLC. All rights reserved.",
-      "navAbout": "About",
-      "navContact": "Contact",
-      "navNews": "News",
-      "navPeople": "Our People",
-      "navServices": "Our Services",
-      "publishedAt": "2026-09-30T12:00:00.000Z",
-      "seoDescription": "Building and renewing the institutions that sustain a free and flourishing society.",
-      "seoTitle": "The Athos Group — From Idea to Impact",
-      "siteName": "The Athos Group",
-      "slug": "site",
-      "status": "published",
-      "title": "Site Settings"
-    },
     {
       "__outstatic": {
         "commit": "9f27287b2f84da95ed3a6e6ed31d826256f085ce",
@@ -123,6 +98,31 @@
       "slug": "contact",
       "status": "published",
       "title": "Contact"
+    },
+    {
+      "__outstatic": {
+        "commit": "e9ed42aa351a86331dcbc52e8b8ff46be07c476c",
+        "hash": "1781690922",
+        "path": "outstatic/content/_singletons/site.md"
+      },
+      "author": {
+        "name": "The Athos Group",
+        "picture": ""
+      },
+      "collection": "_singletons",
+      "footerCopyright": "The Athos Group, LLC. All rights reserved.",
+      "navAbout": "About Athos",
+      "navContact": "Contact",
+      "navNews": "Ideas & Impact",
+      "navPeople": "Our People",
+      "navServices": "Our Services",
+      "publishedAt": "2026-09-30T12:00:00.000Z",
+      "seoDescription": "Building and renewing the institutions that sustain a free and flourishing society.",
+      "seoTitle": "The Athos Group — From Idea to Impact",
+      "siteName": "The Athos Group",
+      "slug": "site",
+      "status": "published",
+      "title": "Site Settings"
     }
   ]
 }
