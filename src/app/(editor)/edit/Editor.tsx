@@ -14,6 +14,7 @@ const strip = (c: any) => {
   return rest;
 };
 const same = (a: any, b: any) => JSON.stringify(strip(a)) === JSON.stringify(strip(b));
+const HELP_SEEN = "athos-cms-help-seen";
 
 export default function Editor({ initial, published: initialPublished, blob }: { initial: any; published: any; blob: boolean }) {
   const [content, setContent] = useState<any>(initial);
@@ -24,10 +25,13 @@ export default function Editor({ initial, published: initialPublished, blob }: {
   const [msg, setMsg] = useState("");
   const [confirm, setConfirm] = useState(false);
   const [history, setHistory] = useState<{ id: string; publishedAt: string }[] | null>(null);
+  const [help, setHelp] = useState(false);
   const frame = useRef<HTMLIFrameElement>(null);
   const saveTimer = useRef<ReturnType<typeof setTimeout>>(undefined);
   const latest = useRef(content);
-  latest.current = content;
+  useEffect(() => {
+    latest.current = content;
+  }, [content]);
 
   const current = TABS.find((t) => t.id === tab)!;
   const dirty = !same(content, published);
@@ -47,6 +51,22 @@ export default function Editor({ initial, published: initialPublished, blob }: {
     window.addEventListener("message", onMsg);
     return () => window.removeEventListener("message", onMsg);
   }, [post]);
+
+  // First visit on this browser: show how it works until they dismiss it
+  useEffect(() => {
+    try {
+      // eslint-disable-next-line react-hooks/set-state-in-effect -- localStorage only exists after hydration
+      setHelp(localStorage.getItem(HELP_SEEN) !== "1");
+    } catch {
+      setHelp(true);
+    }
+  }, []);
+  const closeHelp = () => {
+    setHelp(false);
+    try {
+      localStorage.setItem(HELP_SEEN, "1");
+    } catch {}
+  };
 
   // Autosave the draft a moment after the last change. Nothing goes live until Publish.
   const save = useCallback(async (c: any) => {
@@ -164,7 +184,7 @@ export default function Editor({ initial, published: initialPublished, blob }: {
               Publish to athosed.com
             </button>
           ) : (
-            <button type="button" className="primary" disabled={!dirty || status === "saving" || status === "publishing"} onClick={() => setConfirm(true)}>
+            <button type="button" className="primary" disabled={!dirty || status === "saving" || status === "publishing"} title={dirty ? undefined : "Change something first"} onClick={() => setConfirm(true)}>
               Publish
             </button>
           )}
@@ -179,6 +199,20 @@ export default function Editor({ initial, published: initialPublished, blob }: {
               View live page ↗
             </a>
           </div>
+          {help && (
+            <aside className="help" aria-label="How the editor works">
+              <h2>How this works</h2>
+              <ol>
+                <li>Pick a page at the top, then change any words or photos here.</li>
+                <li>The preview on the right updates as you type. Your changes save on their own.</li>
+                <li>Nothing changes on athosed.com until you press <b>Publish</b>.</li>
+                <li>Every publish is kept in <b>History</b>, so you can always go back.</li>
+              </ol>
+              <button type="button" onClick={closeHelp}>
+                Got it
+              </button>
+            </aside>
+          )}
           <Fields fields={current.sections} ctx={ctx} />
           <form
             className="signout"
@@ -188,6 +222,11 @@ export default function Editor({ initial, published: initialPublished, blob }: {
               location.reload();
             }}
           >
+            {!help && (
+              <button type="button" onClick={() => setHelp(true)}>
+                How this works
+              </button>
+            )}
             <button type="submit">Sign out</button>
           </form>
         </section>
@@ -218,7 +257,7 @@ export default function Editor({ initial, published: initialPublished, blob }: {
               ×
             </button>
           </div>
-          <p className="hint">Every publish is saved. Loading one puts it in the editor as a draft. The site doesn't change until you publish.</p>
+          <p className="hint">Every publish is saved. Loading one puts it in the editor as a draft. The site doesn’t change until you publish.</p>
           {history.length === 0 ? (
             <p className="hint">Nothing published from the editor yet.</p>
           ) : (

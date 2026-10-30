@@ -16,18 +16,21 @@ const PUBLISHED = "content/published.json";
 const DRAFT = "content/draft.json";
 const HISTORY = "content/history/";
 
-const useBlob = () => Boolean(process.env.BLOB_READ_WRITE_TOKEN || process.env.BLOB_STORE_ID);
+const blobOn = () => Boolean(process.env.BLOB_READ_WRITE_TOKEN || process.env.BLOB_STORE_ID);
 const LOCAL = path.join(process.cwd(), ".content");
 
 async function readJson(pathname: string): Promise<Content | null> {
-  if (!useBlob()) {
+  if (!blobOn()) {
     try {
       return JSON.parse(await fs.readFile(path.join(LOCAL, pathname), "utf8"));
     } catch {
       return null;
     }
   }
-  const res = await get(await blobUrl(pathname), { access: "public", useCache: false }).catch(() => null);
+  // Nothing saved yet (no draft, nothing published) is normal, not an error
+  const res = await blobUrl(pathname)
+    .then((url) => get(url, { access: "public", useCache: false }))
+    .catch(() => null);
   if (!res || res.statusCode !== 200) return null;
   return JSON.parse(await new Response(res.stream).text());
 }
@@ -48,7 +51,7 @@ async function blobUrl(pathname: string) {
 
 async function writeJson(pathname: string, data: Content) {
   const body = JSON.stringify(data, null, 2);
-  if (!useBlob()) {
+  if (!blobOn()) {
     const file = path.join(LOCAL, pathname);
     await fs.mkdir(path.dirname(file), { recursive: true });
     await fs.writeFile(file, body);
@@ -80,7 +83,7 @@ export async function saveDraft(content: Content) {
 }
 
 export async function discardDraft() {
-  if (!useBlob()) return fs.rm(path.join(LOCAL, DRAFT), { force: true });
+  if (!blobOn()) return fs.rm(path.join(LOCAL, DRAFT), { force: true });
   const { blobs } = await list({ prefix: DRAFT.replace(/\.json$/, ""), limit: 100 });
   if (blobs.length) await del(blobs.map((b) => b.url)).catch(() => {});
 }
@@ -99,7 +102,7 @@ export type Version = { id: string; publishedAt: string };
 /** Earlier published versions, newest first. */
 export async function listVersions(): Promise<Version[]> {
   let names: string[] = [];
-  if (!useBlob()) {
+  if (!blobOn()) {
     names = await fs.readdir(path.join(LOCAL, HISTORY)).catch(() => []);
   } else {
     const { blobs } = await list({ prefix: HISTORY, limit: 200 });

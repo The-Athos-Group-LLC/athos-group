@@ -10,6 +10,7 @@ export default function Login() {
     <main className="gate">
       <img src="/assets/brand/logo-line-navy.png" alt="The Athos Group" width="300" height="21" />
       <h1>Site editor</h1>
+      <p>Change the words and photos on athosed.com.</p>
       <form
         onSubmit={async (e) => {
           e.preventDefault();

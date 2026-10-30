@@ -47,8 +47,15 @@ button:disabled { cursor: default; opacity: 0.45; }
 .panel-head { display: flex; align-items: baseline; justify-content: space-between; gap: 12px; }
 .panel-head h1 { font: 700 1.5rem/1.2 "Playfair Display", Georgia, serif; margin: 0; }
 .panel-head a { font-size: 0.8125rem; color: var(--blue); }
-.signout { margin-top: 24px; }
+.signout { margin-top: 24px; display: flex; gap: 18px; }
 .signout button { border: 0; background: none; color: var(--ink-2); text-decoration: underline; padding: 0; font-size: 0.8125rem; }
+
+/* First-visit guide */
+.help { background: var(--paper); border: 1px solid var(--line); border-left: 3px solid var(--accent); border-radius: 10px; padding: 16px 18px; display: grid; gap: 10px; }
+.help h2 { margin: 0; font-size: 1rem; }
+.help ol { margin: 0; padding-left: 20px; display: grid; gap: 6px; color: var(--ink-2); font-size: 0.875rem; }
+.help b { color: var(--ink); }
+.help button { justify-self: start; border: 0; border-radius: 6px; padding: 7px 14px; background: var(--ink); color: var(--paper); font-weight: 600; font-size: 0.8125rem; }
 
 /* Fields */
 .grp { border: 0; margin: 0; padding: 16px; background: var(--paper); border-radius: 10px; display: grid; gap: 14px; border: 1px solid var(--line); }
