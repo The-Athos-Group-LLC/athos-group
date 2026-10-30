@@ -122,3 +122,8 @@ button:disabled { cursor: default; opacity: 0.45; }
   .panel { overflow: visible; border-right: 0; }
   .viewport.phone iframe { width: 100%; }
 }
+
+/* Fields never push the panel wider than its column */
+.panel { grid-template-columns: minmax(0, 1fr); }
+.panel > *, .grp > *, .list > *, .item-body > *, .fld > * { min-width: 0; }
+.grp, .list, .item, .fld { min-width: 0; }
