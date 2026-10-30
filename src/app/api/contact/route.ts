@@ -1,4 +1,5 @@
 import { NextResponse } from "next/server";
+import nodemailer from "nodemailer";
 
 type ContactPayload = {
   name?: string;
@@ -11,12 +12,30 @@ function isValidEmail(email: string) {
   return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
 }
 
+// Inquiries go straight to Athos's inbox (CONTACT_TO, keyah@athosed.com) through one of Athos's own Google Workspace
+// accounts, using an app password. Until those are set, they go to the older n8n webhook.
+const smtpUser = process.env.CONTACT_SMTP_USER;
+const smtpPass = process.env.CONTACT_SMTP_PASS;
+const sendTo = process.env.CONTACT_TO || "keyah@athosed.com";
+
+async function sendEmail(p: Required<ContactPayload>) {
+  const mail = nodemailer.createTransport({ host: "smtp.gmail.com", port: 465, secure: true, auth: { user: smtpUser, pass: smtpPass } });
+  await mail.sendMail({
+    from: { name: "athosed.com", address: smtpUser! },
+    to: sendTo,
+    replyTo: { name: p.name, address: p.email },
+    subject: `Website inquiry from ${p.name}${p.organization ? `, ${p.organization}` : ""}`,
+    text: [`Name: ${p.name}`, `Email: ${p.email}`, `Organization: ${p.organization || "(not given)"}`, "", p.message, "", "Sent from the contact form on athosed.com. Reply to this email to answer them."].join("\n"),
+  });
+}
+
 export async function POST(request: Request) {
   const webhookUrl = process.env.N8N_CONTACT_WEBHOOK_URL;
   const apiKey = process.env.N8N_CONTACT_API_KEY;
+  const viaEmail = Boolean(smtpUser && smtpPass);
 
-  if (!webhookUrl || !apiKey) {
-    console.error("Missing N8N_CONTACT_WEBHOOK_URL or N8N_CONTACT_API_KEY");
+  if (!viaEmail && (!webhookUrl || !apiKey)) {
+    console.error("Contact form has no route: set CONTACT_SMTP_USER and CONTACT_SMTP_PASS (or the n8n webhook)");
     return NextResponse.json(
       { error: "Contact form is not configured." },
       { status: 500 },
@@ -46,6 +65,16 @@ export async function POST(request: Request) {
     return NextResponse.json({ error: "Please enter a valid email." }, { status: 400 });
   }
 
+  if (viaEmail) {
+    try {
+      await sendEmail({ name, email, organization, message });
+      return NextResponse.json({ ok: true });
+    } catch (error) {
+      console.error("Contact email failed", error);
+      return NextResponse.json({ error: "Unable to send your message right now." }, { status: 502 });
+    }
+  }
+
   const payload = {
     name,
     email,
@@ -56,11 +85,11 @@ export async function POST(request: Request) {
   };
 
   try {
-    const upstream = await fetch(webhookUrl, {
+    const upstream = await fetch(webhookUrl!, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
-        "X-API-Key": apiKey,
+        "X-API-Key": apiKey!,
       },
       body: JSON.stringify(payload),
     });
@@ -71,14 +100,14 @@ export async function POST(request: Request) {
         status: upstream.status,
         urlHost: (() => {
           try {
-            return new URL(webhookUrl).host;
+            return new URL(webhookUrl!).host;
           } catch {
             return "invalid-url";
           }
         })(),
         urlPath: (() => {
           try {
-            return new URL(webhookUrl).pathname;
+            return new URL(webhookUrl!).pathname;
           } catch {
             return "invalid-url";
           }

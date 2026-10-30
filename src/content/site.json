@@ -45,8 +45,8 @@
     {
       "id": "reach",
       "kicker": "Reach University",
-      "title": "Athos’s first client.",
-      "caption": "Athos has worked with Reach University since August 2025.",
+      "title": "Pioneering an affordable path for working adults to earn a university degree.",
+      "caption": "As Athos’s first client, Reach envisions a world where everyone, everywhere has access to fully work-embedded higher education, so that skill and effort (not money or connections) are what it takes to get ahead.",
       "img": "/assets/oct25/mosaic-reach.jpg",
       "alt": "Reach University's Joe Ross testifying at a hearing",
       "link": {
@@ -134,11 +134,11 @@
     "rulesLink": "Nine Rules for Building a Breakthrough Social Venture",
     "rulesPdf": "",
     "video": {
-      "youtube": "",
+      "url": "https://vimeo.com/1241199358",
       "poster": "/assets/freedomfest-poster.jpg",
-      "title": "Building What Comes Next",
-      "by": "Pano Kanelos and Chad Thevenot on the FreedomFest mainstage, 2026",
-      "duration": "15:30"
+      "title": "Nine Rules for Building a Breakthrough Social Venture",
+      "by": "An introduction from Founding Partner Pano Kanelos",
+      "duration": "1:30"
     }
   },
   "clients": [
@@ -219,6 +219,11 @@
   "quotesTitle": "Real partnership. Proven impact.",
   "quotes": [
     {
+      "text": "One of the best in the business…Chad is probably the best development [professional] in our network, hands down.",
+      "name": "Siri Terjesen",
+      "org": "Florida Atlantic University"
+    },
+    {
       "text": "[M]y first pitch for the campaign came in today at the top ask level: $1M per year for three years, with the first payment immediate. He’s also allowing us to use his name as we approach other lead donors. Chad, your advice and guidance as we built our proposal was instrumental to this. Pro level.",
       "name": "John Tomasi",
       "org": "Heterodox Academy"
@@ -227,6 +232,11 @@
       "text": "…You have built an entire fundraising operation from scratch and raised a huge sum of money that only a handful of hundred-year-old universities can muster. We would not be here without you.",
       "name": "Bari Weiss",
       "org": "Editor-in-chief, CBS News"
+    },
+    {
+      "text": "Athos brings a rare combination of strategic insight and fundraising expertise that has truly elevated our major gifts and development efforts. They’ve helped us clarify our value proposition, refine our messaging, and identify a broader network of funders and partners. Most importantly, they’ve met us where we are—offering tailored guidance that makes us stand out in a competitive philanthropic landscape.",
+      "name": "Dr. Eric Dunker",
+      "org": "Reach University"
     }
   ],
   "partners": [
@@ -254,7 +264,7 @@
       "name": "Kéyah Doering",
       "role": "Operations Consultant",
       "img": "/assets/team-keyah-doering.jpg",
-      "bio": "Development and operations professional supporting mission-driven organizations. King’s College NYC graduate. Built UATX’s development infrastructure as its first non-leadership hire."
+      "bio": "Nearly a decade of nonprofit development experience at the New-York Historical Society, the University of Austin (UATX), and St James’s Piccadilly, spanning donor research, CRM and operations infrastructure, and major-gift stewardship. Built UATX’s development infrastructure as its first non-leadership hire. Drawn to institutions built to last."
     },
     {
       "name": "Lindsey Lawrence",
@@ -278,13 +288,13 @@
       "name": "Emma Eisenman",
       "role": "Senior Associate",
       "img": "/assets/oct25/team-emma.jpg",
-      "bio": ""
+      "bio": "Builds lasting relationships that advance America’s first principles. Most recently served as Chief Development Officer of the Steamboat Institute, worked alongside the founder of Moore, an omni-channel marketing company, and managed programs for emerging conservative leaders at Hillsdale College in Washington, D.C., her alma mater."
     },
     {
       "name": "Jake Donziger",
       "role": "",
       "img": "",
-      "bio": ""
+      "bio": "Brings a deep interest in helping new educational ventures go from ideation to opening day. Served as operations lead and spearheaded founding family recruitment for a startup private school launched by 2 Hour Learning and Drew University. Currently studying Management & Entrepreneurship at the University of Colorado Boulder."
     }
   ],
   "contactBand": {
@@ -346,7 +356,7 @@
         "short": "Build",
         "inAction": {
           "label": "See it in action",
-          "href": ""
+          "href": "https://lnkd.in/p/edv-CG2k"
         },
         "title": "Turning bold ideas into new institutions",
         "context": "Launching a new institution is extraordinarily hard. Even if the vision is clear, the path from idea to reality rarely is. Finding experienced people you can trust to build alongside you is even harder. Athos brings the strategy, relationships, and execution to move your idea from idea to launch.",
@@ -377,7 +387,7 @@
         "short": "Scale",
         "inAction": {
           "label": "See it in action",
-          "href": ""
+          "href": "https://lnkd.in/p/evEp4Mks"
         },
         "title": "Helping promising institutions break through",
         "context": "Many organizations reach a point where what got them here won't get them where they need to go next. The opportunity is bigger than the institution's current strategy, team, fundraising capacity, or infrastructure. Athos works alongside organizational leaders to break through those constraints and accelerate the next stage of growth.",
@@ -408,7 +418,7 @@
         "short": "Connect",
         "inAction": {
           "label": "See it in action",
-          "href": ""
+          "href": "https://lnkd.in/p/eB33t5GY"
         },
         "title": "Connecting funders to the right institutions",
         "context": "The hardest philanthropic question isn't simply how much to give, but where your capital can make a breakthrough difference. The most consequential opportunities are often emerging, difficult to evaluate, or don't exist yet. Athos gives funders access to the people, ideas, and institutions shaping what comes next.",
@@ -442,27 +452,27 @@
     "subtitle": "Updates on our work with founders, funders, and institutions building a free and flourishing society.",
     "items": [
       {
-        "kind": "Case study",
+        "kind": "",
         "date": "Oct 2026",
         "story": "breakthrough"
       },
       {
-        "kind": "Case study",
+        "kind": "",
         "date": "Aug 2026",
         "story": "academy"
       },
       {
-        "kind": "Case study",
+        "kind": "",
         "date": "Jul 2026",
         "story": "mainstage"
       },
       {
-        "kind": "Case study",
+        "kind": "",
         "date": "2026",
         "story": "miller"
       },
       {
-        "kind": "Case study",
+        "kind": "",
         "date": "May 2026",
         "story": "gap"
       },
@@ -471,17 +481,19 @@
         "date": "2026",
         "title": "Global Accreditation Project (GAP) Takes Shape in Bid to Bring Personalization and Common Sense to Higher Ed Accreditation",
         "text": "The Global Accreditation Project is building a new kind of accreditor: one that shifts higher education from compliance to outcomes, conformity to pluralism, and bureaucracy to real quality assurance. Targeting a full launch by summer 2028.",
-        "img": "/assets/news-gap-logo.png"
+        "img": "/assets/news-gap-logo.png",
+        "href": "https://lnkd.in/p/eVRPC7hz"
       },
       {
         "kind": "Announcement",
         "date": "Mar 2026",
         "title": "Athos and Principled Business Introduce Breakthrough Builders to Fast-Track Funding for Early-Stage Social Ventures",
         "text": "Breakthrough Builders is a new community of founders, philanthropists, and advisors committed to launching and funding the most promising early-stage social ventures.",
-        "img": "/assets/news-breakthrough-builders.png"
+        "img": "/assets/news-breakthrough-builders.png",
+        "href": "https://lnkd.in/p/eB33t5GY"
       },
       {
-        "kind": "Case study",
+        "kind": "",
         "date": "Since Aug 2025",
         "story": "reach"
       },
@@ -490,7 +502,8 @@
         "date": "2025",
         "title": "The Athos Group Launches to Help Founders and Funders Build the Institutions of Tomorrow",
         "text": "The renewal of society depends on the renewal of its institutions. Athos partners with visionaries to provide strategic vision, fundraising, and storytelling: taking institutions from 0 to 1 and 1 to 10.",
-        "img": "/assets/news-athos-launch.png"
+        "img": "/assets/news-athos-launch.png",
+        "href": "https://lnkd.in/p/e52hNKdJ"
       }
     ]
   },

@@ -120,14 +120,14 @@ function slotTile(s: any) {
   return `<div class="tile slot t-${esc(s.id)}">${media}</div>`;
 }
 
-// The talk: a poster until clicked. Until Athos posts it to YouTube it's a still with a caption, no play button.
+// The talk: a poster until clicked. Until there's a video link it's a still with a caption, no play button.
 function film(V: any) {
   if (!V) return "";
   const caption = `<figcaption><b>${esc(V.title)}</b><span>${esc(V.by)}</span></figcaption>`;
-  const id = youtubeId(V.youtube);
-  if (!id) return `<figure class="film still"><div class="play"><img src="${esc(V.poster)}" alt="" loading="lazy"></div>${caption}</figure>`;
+  const src = videoEmbed(V.url);
+  if (!src) return `<figure class="film still"><div class="play"><img src="${esc(V.poster)}" alt="" loading="lazy"></div>${caption}</figure>`;
   return `<figure class="film">
-      <button class="play" type="button" id="film-play" aria-label="Play the video: ${esc(V.title)}${has(V.duration) ? `, ${esc(V.duration)}` : ""}" data-yt="${esc(id)}">
+      <button class="play" type="button" id="film-play" aria-label="Play the video: ${esc(V.title)}${has(V.duration) ? `, ${esc(V.duration)}` : ""}" data-embed="${esc(src)}">
         <img src="${esc(V.poster)}" alt="" loading="lazy">
         <span class="pb" aria-hidden="true"><svg viewBox="0 0 16 16"><path d="M4 2.5l9.5 5.5L4 13.5z"/></svg></span>
         ${has(V.duration) ? `<span class="dur" aria-hidden="true">${esc(V.duration)}</span>` : ""}
@@ -142,6 +142,18 @@ export function youtubeId(v: unknown) {
   const m = s.match(/(?:youtu\.be\/|v=|\/embed\/|\/shorts\/|\/live\/)([\w-]{11})/);
   if (m) return m[1];
   return /^[\w-]{11}$/.test(s) ? s : "";
+}
+/** The player address for a YouTube or Vimeo link (unlisted Vimeo links keep their key), or "" if it's neither. */
+export function videoEmbed(v: unknown) {
+  if (!has(v)) return "";
+  const s = String(v).trim();
+  const vimeo = s.match(/vimeo\.com\/(?:video\/)?(\d+)(?:\/([\da-f]+))?/);
+  if (vimeo) {
+    const key = vimeo[2] || s.match(/[?&]h=([\da-f]+)/)?.[1];
+    return `https://player.vimeo.com/video/${vimeo[1]}?${key ? `h=${key}&` : ""}autoplay=1&dnt=1`;
+  }
+  const yt = youtubeId(s);
+  return yt ? `https://www.youtube-nocookie.com/embed/${yt}?autoplay=1&rel=0` : "";
 }
 
 function rulesLink(W: any) {
@@ -290,13 +302,13 @@ function ideas(A: Content) {
     if (s) {
       const media = has(s.img) ? `<div class="cm${s.logoish ? " logo" : ""}"><img src="${esc(s.img)}" alt="${esc(s.alt)}"></div>` : `<div class="cm"><span class="needed-frame"></span></div>`;
       return `<button class="card" type="button" data-story="${esc(s.id)}" aria-haspopup="dialog">${media}<span class="cb">
-          <span class="kicker"><span>${esc(it.kind)}: ${esc(s.kicker)}</span><span class="date">${esc(it.date)}</span></span>
-          <h3>${esc(s.title)}</h3><p>${esc(s.caption)}</p><span class="open-hint">Read the story</span></span></button>`;
+          <span class="kicker"><span>${has(it.kind) ? `${esc(it.kind)}: ` : ""}${esc(s.kicker)}</span><span class="date">${esc(it.date)}</span></span>
+          <h3>${esc(s.title)}</h3><p>${esc(s.caption)}</p><span class="open-hint">Learn more</span></span></button>`;
     }
     const media = has(it.img) ? `<div class="cm logo"><img src="${esc(it.img)}" alt=""></div>` : `<div class="cm"><span class="needed-frame"></span></div>`;
     const inner = `${media}<div class="cb">
         <span class="kicker"><span>${esc(it.kind)}</span><span class="date">${esc(it.date)}</span></span>
-        <h3>${esc(it.title)}</h3><p>${esc(it.text)}</p>${safeUrl(it.href) ? `<span class="open-hint">Read more</span>` : ""}</div>`;
+        <h3>${esc(it.title)}</h3><p>${esc(it.text)}</p>${safeUrl(it.href) ? `<span class="open-hint">Learn more</span>` : ""}</div>`;
     return safeUrl(it.href)
       ? `<a class="card" href="${esc(safeUrl(it.href))}" target="_blank" rel="noopener">${inner}</a>`
       : `<article class="card">${inner}</article>`;

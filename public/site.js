@@ -233,9 +233,9 @@
     if (t.closest("#story-close")) return document.getElementById("story").close();
     if (t.id === "story") return t.close(); // backdrop
     const play = t.closest("#film-play");
-    if (play && play.dataset.yt) {
+    if (play && play.dataset.embed) {
       const f = document.createElement("iframe");
-      f.src = `https://www.youtube-nocookie.com/embed/${encodeURIComponent(play.dataset.yt)}?autoplay=1&rel=0`;
+      f.src = play.dataset.embed;
       f.title = DATA.videoTitle;
       f.allow = "autoplay; encrypted-media; picture-in-picture; fullscreen";
       f.allowFullscreen = true;

@@ -8,7 +8,7 @@ export type Field =
   | { k: "text" | "textarea" | "url" | "email"; path: Path; label: string; hint?: string }
   | { k: "image"; path: Path; alt?: Path; label: string; hint?: string; logo?: boolean }
   | { k: "pdf"; path: Path; label: string; hint?: string }
-  | { k: "youtube"; path: Path; label: string; hint?: string }
+  | { k: "video"; path: Path; label: string; hint?: string }
   | { k: "paragraphs"; path: Path; label: string; hint?: string }
   | { k: "pairs"; path: Path; label: string; hint?: string; first: string; second: string }
   | { k: "story"; path: Path; label: string; hint?: string }
@@ -70,11 +70,11 @@ export const TABS: Tab[] = [
           { k: "paragraphs", path: ["whoWeAre", "body"], label: "Paragraphs" },
           { k: "text", path: ["whoWeAre", "rulesLink"], label: "Nine Rules link text" },
           { k: "pdf", path: ["whoWeAre", "rulesPdf"], label: "Nine Rules PDF", hint: "The link shows once a PDF is added." },
-          { k: "youtube", path: ["whoWeAre", "video", "youtube"], label: "YouTube link for the talk", hint: "Paste the YouTube link. Until there is one, the cover photo shows without a play button." },
+          { k: "video", path: ["whoWeAre", "video", "url"], label: "Video link", hint: "Paste a YouTube or Vimeo link. Until there is one, the cover photo shows without a play button." },
           { k: "image", path: ["whoWeAre", "video", "poster"], label: "Video cover photo" },
           { k: "text", path: ["whoWeAre", "video", "title"], label: "Video title" },
           { k: "text", path: ["whoWeAre", "video", "by"], label: "Video caption" },
-          { k: "text", path: ["whoWeAre", "video", "duration"], label: "Video length", hint: "For example 15:30" },
+          { k: "text", path: ["whoWeAre", "video", "duration"], label: "Video length", hint: "For example 1:30" },
         ],
       },
       {
@@ -219,7 +219,7 @@ export const TABS: Tab[] = [
         title: (c) => (c.story ? `${c.kind || "Story"}: ${c.story}` : c.title || "New card"),
         blank: () => ({ kind: "Announcement", date: "", story: "", title: "", text: "", img: "", href: "" }),
         item: [
-          { k: "text", path: ["kind"], label: "Type", hint: "For example Case study or Announcement" },
+          { k: "text", path: ["kind"], label: "Type", hint: "For example Announcement. Leave empty to show just the story name." },
           { k: "text", path: ["date"], label: "Date label" },
           { k: "story", path: ["story"], label: "Show a story from the Home wall", hint: "Pick one to reuse its headline, photo and story. The fields below are then ignored." },
           { k: "text", path: ["title"], label: "Headline" },

@@ -1,7 +1,7 @@
 "use client";
 
 import { useId, useRef, useState } from "react";
-import { youtubeId } from "@/lib/render";
+import { videoEmbed } from "@/lib/render";
 import { prepareImage, uploadFile } from "./media";
 import type { Field, Path } from "./schema";
 
@@ -69,13 +69,13 @@ function FieldView({ f, base, ctx }: { f: Field; base: Path; ctx: Ctx }) {
           {hint}
         </div>
       );
-    case "youtube": {
-      const ok = youtubeId(value);
+    case "video": {
+      const ok = videoEmbed(value);
       return (
         <div className="fld">
           {label}
-          <input id={id} type="url" value={value ?? ""} onChange={(e) => set(e.target.value)} placeholder="https://www.youtube.com/watch?v=…" />
-          {value && !ok ? <p className="hint warn">That doesn't look like a YouTube link yet.</p> : hint}
+          <input id={id} type="url" value={value ?? ""} onChange={(e) => set(e.target.value)} placeholder="https://vimeo.com/… or https://www.youtube.com/watch?v=…" />
+          {value && !ok ? <p className="hint warn">That doesn't look like a YouTube or Vimeo link yet.</p> : hint}
         </div>
       );
     }
