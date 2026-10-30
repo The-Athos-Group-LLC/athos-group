@@ -1,0 +1,508 @@
+{
+  "nav": [
+    {
+      "id": "home",
+      "label": "Home"
+    },
+    {
+      "id": "about",
+      "label": "About Athos",
+      "url": "/about"
+    },
+    {
+      "id": "build",
+      "label": "What We Build",
+      "url": "/build"
+    },
+    {
+      "id": "ideas",
+      "label": "Ideas & Impact",
+      "url": "/impact"
+    },
+    {
+      "id": "contact",
+      "label": "Contact",
+      "url": "/contact"
+    }
+  ],
+  "logoLine": "/assets/brand/logo-line-navy.png",
+  "tagline": "From Idea to Impact.",
+  "heroLine": "Building and renewing the institutions that sustain a free and flourishing society.",
+  "stories": [
+    {
+      "id": "miller",
+      "kicker": "Miller National Academy",
+      "title": "From idea to national institution in just seven months.",
+      "caption": "Athos helped build the Miller National Academy for Free Expression and Pluralism from seed funding to a full-scale national launch—culminating in an inaugural event featuring President George W. Bush as keynote speaker.",
+      "img": "/assets/oct25/mosaic-miller.jpg",
+      "alt": "The University of Denver campus from above",
+      "link": {
+        "label": "Learn more",
+        "href": "https://www.du.edu/milleracademy"
+      },
+      "date": "2026"
+    },
+    {
+      "id": "reach",
+      "kicker": "Reach University",
+      "title": "Athos’s first client.",
+      "caption": "Athos has worked with Reach University since August 2025.",
+      "img": "/assets/oct25/mosaic-reach.jpg",
+      "alt": "Reach University's Joe Ross testifying at a hearing",
+      "link": {
+        "label": "Watch Reach's impact video",
+        "href": "https://www.youtube.com/watch?v=82fdX5Y2APc"
+      },
+      "date": "Since Aug 2025"
+    },
+    {
+      "id": "breakthrough",
+      "kicker": "Breakthrough Builders",
+      "title": "Creating a growing community of social venture funders and founders.",
+      "caption": "Launched by Athos and Principled Business in March 2026, Breakthrough Builders culminated its first year with an over-capacity gathering in Austin in October 2026, where actor Kelsey Grammer introduced “American Revelation”—one of the breakthrough projects the community is helping bring to life.",
+      "img": "/assets/oct25/mosaic-breakthrough.jpg",
+      "alt": "A speaker addressing a Breakthrough Builders gathering",
+      "link": {
+        "label": "Learn more",
+        "href": "https://www.principledbusiness.org/programs/breakthrough-builders"
+      },
+      "date": "Oct 2026"
+    },
+    {
+      "id": "academy",
+      "kicker": "Athos Academy",
+      "title": "Cultivating a generation of visionary fundraising leaders.",
+      "caption": "In August 2026, Athos Academy brought together 18 of the country’s most talented fundraisers and leaders in Austin for its inaugural gathering—an intensive exploration of Athos’s distinctive approach to vision-based fundraising.",
+      "img": "/assets/oct25/mosaic-academy.jpg",
+      "alt": "The Athos Academy cohort on the porch of Arena Hall in Austin",
+      "link": {
+        "label": "Nine Rules for Vision-Based Fundraising",
+        "href": "/assets/nine-rules-vision-based-fundraising.pdf"
+      },
+      "date": "Aug 2026"
+    },
+    {
+      "id": "mainstage",
+      "kicker": "ARC London & FreedomFest",
+      "title": "Taking the Athos playbook to the mainstage.",
+      "caption": "Athos founders Pano Kanelos and Chad Thevenot presented their “Nine Rules for Building a Breakthrough Social Venture” from the mainstage at both the ARC Conference in London (June 2026) and FreedomFest in Las Vegas (July 2026)—sharing the lessons behind building bold new institutions and movements.",
+      "img": "/assets/oct25/mosaic-mainstage.jpg",
+      "img2": "/assets/stage-2.jpg",
+      "alt": "Chad and Pano presenting “Building what comes next” on the mainstage",
+      "alt2": "Chad and Pano presenting Rule #9: Borrow credibility until you earn it",
+      "link": {
+        "label": "Learn more",
+        "href": "https://lnkd.in/p/eYnBxgBs"
+      },
+      "date": "Jun–Jul 2026"
+    },
+    {
+      "id": "gap",
+      "kicker": "Global Accreditation Project",
+      "title": "Opening the door to a new era of higher education.",
+      "caption": "In May 2026, Athos launched the Global Accreditation Project (GAP)—an ambitious effort to build a new, outcomes-based accreditor designed to break down barriers to innovation, increase competition, and make it easier for bold new models of higher education to emerge.",
+      "img": "/assets/oct25/mosaic-gap.jpg",
+      "alt": "The Global Accreditation Project introduced on the Cornerstone Talks stage",
+      "link": {
+        "label": "globalaccredit.org",
+        "href": "http://globalaccredit.org"
+      },
+      "date": "May 2026"
+    }
+  ],
+  "storySlots": [
+    {
+      "id": "next-1",
+      "img": "/assets/oct26/mosaic-next-1.jpg",
+      "alt": "A panel of four speakers on the ARC stage"
+    },
+    {
+      "id": "next-2",
+      "img": "/assets/oct26/mosaic-next-2.jpg",
+      "alt": "Jacob Mchangama, founder of The Future of Free Speech, speaking on stage"
+    }
+  ],
+  "whoWeAre": {
+    "marker": "Who We Are",
+    "title": "Builders and Partners.",
+    "lead": "We build bold social ventures, and partner with the founders and funders who make them possible.",
+    "body": [
+      "Athos works alongside visionary leaders to turn ambitious ideas into new institutions, and promising institutions into breakthrough organizations. We bring the strategy, talent, relationships, and philanthropic capital needed to move from vision to velocity—fast.",
+      "We build new institutions that matter. We scale institutions that matter. And we connect funders with the institutions that matter.",
+      "Our team is made up of builders, operators, and entrepreneurs who have launched and led some of the country’s most distinctive social ventures. We don’t stand on the sidelines and advise. We build alongside you."
+    ],
+    "rulesLink": "Nine Rules for Building a Breakthrough Social Venture",
+    "rulesPdf": "",
+    "video": {
+      "youtube": "",
+      "poster": "/assets/freedomfest-poster.jpg",
+      "title": "Building What Comes Next",
+      "by": "Pano Kanelos and Chad Thevenot on the FreedomFest mainstage, 2026",
+      "duration": "15:30"
+    }
+  },
+  "clients": [
+    {
+      "name": "Global Accreditation Project",
+      "logo": "/assets/logos-trim/client-7.png"
+    },
+    {
+      "name": "VELA Education Fund",
+      "logo": "/assets/logos-trim/client-11.png"
+    },
+    {
+      "name": "Reach University",
+      "logo": "/assets/logos-trim/client-2.png"
+    },
+    {
+      "name": "Heterodox Academy",
+      "logo": "/assets/logos-trim/client-3.png"
+    },
+    {
+      "name": "Ralston College",
+      "logo": "/assets/logos-trim/client-10.png"
+    },
+    {
+      "name": "Institute of World Politics",
+      "logo": "/assets/logos-trim/client-5.png"
+    },
+    {
+      "name": "National Center for the Apprenticeship Degree",
+      "logo": "/assets/logos-trim/client-1.png"
+    },
+    {
+      "name": "Institute for Humane Studies",
+      "logo": "/assets/logos-trim/client-4.png"
+    },
+    {
+      "name": "Emergent Order Foundation",
+      "logo": "/assets/logos-trim/client-6.png"
+    },
+    {
+      "name": "The Great Questions Foundation",
+      "logo": "/assets/logos-trim/client-8.png"
+    },
+    {
+      "name": "The Independent Center",
+      "logo": "/assets/logos-trim/client-9.png"
+    },
+    {
+      "name": "BEB Global",
+      "logo": "/assets/logos-trim/client-12.png"
+    },
+    {
+      "name": "The Future of Free Speech",
+      "logo": "/assets/logos-trim/client-13.png"
+    },
+    {
+      "name": "Hall of Giants",
+      "logo": "/assets/logos-trim/client-14.png"
+    },
+    {
+      "name": "Open Discourse Coalition",
+      "logo": "/assets/logos-trim/client-15.png"
+    },
+    {
+      "name": "Northwestern Pritzker School of Law",
+      "logo": "/assets/logos-trim/client-16.png"
+    },
+    {
+      "name": "Mike & Sofia Segal Foundation",
+      "logo": "/assets/logos-trim/client-17.png"
+    },
+    {
+      "name": "WeVote",
+      "logo": "/assets/logos-trim/client-18.png"
+    }
+  ],
+  "quotesMarker": "What Clients Say",
+  "quotesTitle": "Real partnership. Proven impact.",
+  "quotes": [
+    {
+      "text": "[M]y first pitch for the campaign came in today at the top ask level: $1M per year for three years, with the first payment immediate. He’s also allowing us to use his name as we approach other lead donors. Chad, your advice and guidance as we built our proposal was instrumental to this. Pro level.",
+      "name": "John Tomasi",
+      "org": "Heterodox Academy"
+    },
+    {
+      "text": "…You have built an entire fundraising operation from scratch and raised a huge sum of money that only a handful of hundred-year-old universities can muster. We would not be here without you.",
+      "name": "Bari Weiss",
+      "org": "Editor-in-chief, CBS News"
+    }
+  ],
+  "partners": [
+    {
+      "name": "Chad Thevenot",
+      "role": "Founding Partner and Managing Director",
+      "bio": "Strategic education and nonprofit leader with 30+ years advancing mission-driven organizations. Previously SVP for Advancement at University of Austin (UATX) and Executive Director at Institute for Humane Studies. Expertise in strategy, philanthropy, and public engagement.",
+      "img": "/assets/chad.jpg"
+    },
+    {
+      "name": "Dr. Pano Kanelos",
+      "role": "Founding Partner",
+      "bio": "Nationally recognized academic leader advising on institutional growth and transformation. Founded and led University of Austin; served as President of St. John’s College. Recipient of the Courage in Education Award and Hero of Intellectual Freedom Award.",
+      "img": "/assets/pano.jpg"
+    }
+  ],
+  "team": [
+    {
+      "name": "Meg Court",
+      "role": "Client Relationship Manager",
+      "img": "/assets/team-meg-court.jpg",
+      "bio": "Operations and development professional who cares deeply about helping mission-driven organizations grow with clarity and purpose. Helped build the University of Austin (UATX)’s advancement operations during the institution’s founding years."
+    },
+    {
+      "name": "Kéyah Doering",
+      "role": "Operations Consultant",
+      "img": "/assets/team-keyah-doering.jpg",
+      "bio": "Development and operations professional supporting mission-driven organizations. King’s College NYC graduate. Built UATX’s development infrastructure as its first non-leadership hire."
+    },
+    {
+      "name": "Lindsey Lawrence",
+      "role": "Director of Community Strategy",
+      "img": "/assets/team-lindsey-lawrence.jpg",
+      "bio": "Builds and scales ventures that advance a free and flourishing society. Expanded the national leadership network at Teneo, served as executive director of the Arena Hall Foundation, and co-founded Arena Hall, Inc."
+    },
+    {
+      "name": "Asra Nadeem",
+      "role": "Advisor",
+      "img": "/assets/team-asra-nadeem.jpg",
+      "bio": "CEO of DraperU and Partner at DraperU Ventures investing in frontier tech — AI, aerospace, defense. Led investments in 57+ companies including three unicorns."
+    },
+    {
+      "name": "Gerry O’Sullivan",
+      "role": "Senior Advisor, Accreditation",
+      "img": "/assets/team-gerry-osullivan.webp",
+      "bio": "30+ years in independent higher education across faculty, provost, and consultant roles. Extensive accreditation experience including authoring reports and serving agencies."
+    },
+    {
+      "name": "Emma Eisenman",
+      "role": "Senior Associate",
+      "img": "/assets/oct25/team-emma.jpg",
+      "bio": ""
+    },
+    {
+      "name": "Jake Donziger",
+      "role": "",
+      "img": "",
+      "bio": ""
+    }
+  ],
+  "contactBand": {
+    "title": "Ready to build something that matters?",
+    "body": "We work with a select group of organizations committed to ideas and institutions that matter. If that sounds like you, we’d like to hear from you.",
+    "cta": "Contact us"
+  },
+  "about": {
+    "title": "We Are Builders & Partners",
+    "peopleImage": {
+      "src": "/assets/oct25/about-builders.jpg",
+      "alt": "An Athos working session, the room facing a screen that reads “Fund the future, not the organization.”"
+    },
+    "peopleText": "The Athos team is made up of builders, operators, and entrepreneurs who have launched and led some of the country’s most distinctive social ventures. We don’t stand on the sidelines and advise. We build alongside you.",
+    "missionSubtitle": "Building institutions that matter.",
+    "missionImage": {
+      "src": "/assets/oct25/about-mission.jpg",
+      "alt": "A small working meeting around a table"
+    },
+    "mission": "The Athos Group serves those who believe that ideas have consequences — and that the right institutions, built well, can change the course of history. We bring strategy, relationships, and execution to help founders and funders build and scale institutions that matter.",
+    "principlesSubtitle": "What we stand for.",
+    "principles": [
+      {
+        "title": "Courageous visions and strategies",
+        "text": "We champion innovation, differentiation, and outsized impact. The institutions that endure are those bold enough to pursue a vision others haven't yet imagined."
+      },
+      {
+        "title": "Bottom-up approaches",
+        "text": "We develop authentic, engaged communities of learners, educators, and supporters. Lasting institutions are built from within — not imposed from above."
+      },
+      {
+        "title": "Intellectual pluralism and freedom of inquiry",
+        "text": "We hold intellectual pluralism and freedom of inquiry as core pillars of learning and discovery. A flourishing society depends on the uninhibited pursuit of truth."
+      },
+      {
+        "title": "Radical transparency, accountability, and independence",
+        "text": "We operate with radical transparency, accountability, and independence to ensure institutional integrity. Trust is earned through honest counsel and consistent action."
+      },
+      {
+        "title": "Institutional heterogeneity",
+        "text": "We believe in institutional heterogeneity — organizations designed to serve the unique needs of diverse audiences. One size does not fit all. Excellence demands distinction."
+      }
+    ]
+  },
+  "build": {
+    "title": "What We Build",
+    "introImage": {
+      "src": "/assets/oct25/build-header.jpg",
+      "alt": "Guests in discussion at a dinner beside a Heterodox Academy banner"
+    },
+    "intro": [
+      "At Athos, we build bold social ventures, and partner with the founders and funders who make them possible.",
+      "We work alongside visionary leaders to turn ambitious ideas into new institutions, and promising institutions into breakthrough organizations.",
+      "We bring the strategy, talent, relationships, and philanthropic capital needed to move from vision to velocity—fast.",
+      "We build new institutions that matter. We scale institutions that matter. And we connect funders with the institutions that matter."
+    ],
+    "areas": [
+      {
+        "short": "Build",
+        "inAction": {
+          "label": "See it in action",
+          "href": ""
+        },
+        "title": "Turning bold ideas into new institutions",
+        "context": "Launching a new institution is extraordinarily hard. Even if the vision is clear, the path from idea to reality rarely is. Finding experienced people you can trust to build alongside you is even harder. Athos brings the strategy, relationships, and execution to move your idea from idea to launch.",
+        "items": [
+          [
+            "Vision & Strategy",
+            "Sharpen the idea, test the opportunity, understand the landscape, and build a clear roadmap from concept to launch."
+          ],
+          [
+            "Institutional Design",
+            "Build the governance, organizational model, programs, budgets, regulatory pathways, and operating structures your institution needs to succeed."
+          ],
+          [
+            "Capital & Community",
+            "Develop the case for support, identify and cultivate founding funders, and build the community of allies, partners, and champions around your venture."
+          ],
+          [
+            "Leadership & Execution",
+            "Embed experienced builders to drive critical workstreams, recruit founding leadership, and create the early wins that create momentum, energy, and excitement."
+          ],
+          [
+            "Narrative & Launch",
+            "Create the positioning, messaging, brand, communications, events, and launch strategy that introduce your institution to the world."
+          ]
+        ]
+      },
+      {
+        "short": "Scale",
+        "inAction": {
+          "label": "See it in action",
+          "href": ""
+        },
+        "title": "Helping promising institutions break through",
+        "context": "Many organizations reach a point where what got them here won't get them where they need to go next. The opportunity is bigger than the institution's current strategy, team, fundraising capacity, or infrastructure. Athos works alongside organizational leaders to break through those constraints and accelerate the next stage of growth.",
+        "items": [
+          [
+            "Strategy for Scale",
+            "Clarify where the institution can have outsized impact, sharpen its differentiation, and translate ambition into an actionable growth strategy."
+          ],
+          [
+            "Fundraising & Growth",
+            "Strengthen the case for support, identify and cultivate major donors, build development systems, and add senior fundraising capacity when needed."
+          ],
+          [
+            "Leadership & Capacity",
+            "Provide fractional senior leadership, recruit critical executives, and strengthen the organizational capabilities required for the next stage."
+          ],
+          [
+            "Narrative & Reach",
+            "Sharpen the institution's story, positioning, communications, partnerships, and events to expand its influence and community."
+          ],
+          [
+            "Execution & Acceleration",
+            "Put experienced operators alongside your team to drive priority initiatives and turn strategy into measurable progress."
+          ]
+        ]
+      },
+      {
+        "short": "Connect",
+        "inAction": {
+          "label": "See it in action",
+          "href": ""
+        },
+        "title": "Connecting funders to the right institutions",
+        "context": "The hardest philanthropic question isn't simply how much to give, but where your capital can make a breakthrough difference. The most consequential opportunities are often emerging, difficult to evaluate, or don't exist yet. Athos gives funders access to the people, ideas, and institutions shaping what comes next.",
+        "items": [
+          [
+            "Find What Matters",
+            "Identify high-potential founders, emerging institutions, and overlooked opportunities aligned with your philanthropic vision."
+          ],
+          [
+            "Know What Works",
+            "Provide independent diligence on leadership, strategy, governance, financial sustainability, and potential for real impact."
+          ],
+          [
+            "Build What's Missing",
+            "When the institution that should exist doesn't yet, help conceive, design, launch, and capitalize it."
+          ],
+          [
+            "Strengthen What You Back",
+            "Work alongside promising grantees to address strategic, leadership, fundraising, governance, or execution challenges that could limit their impact."
+          ],
+          [
+            "Build the Network",
+            "Connect funders with exceptional founders, fellow philanthropists, scholars, and leaders through curated introductions, gatherings, and communities."
+          ]
+        ]
+      }
+    ]
+  },
+  "ideas": {
+    "title": "Ideas and Impact",
+    "subtitle": "Updates on our work with founders, funders, and institutions building a free and flourishing society.",
+    "items": [
+      {
+        "kind": "Case study",
+        "date": "Oct 2026",
+        "story": "breakthrough"
+      },
+      {
+        "kind": "Case study",
+        "date": "Aug 2026",
+        "story": "academy"
+      },
+      {
+        "kind": "Case study",
+        "date": "Jul 2026",
+        "story": "mainstage"
+      },
+      {
+        "kind": "Case study",
+        "date": "2026",
+        "story": "miller"
+      },
+      {
+        "kind": "Case study",
+        "date": "May 2026",
+        "story": "gap"
+      },
+      {
+        "kind": "Announcement",
+        "date": "2026",
+        "title": "Global Accreditation Project (GAP) Takes Shape in Bid to Bring Personalization and Common Sense to Higher Ed Accreditation",
+        "text": "The Global Accreditation Project is building a new kind of accreditor: one that shifts higher education from compliance to outcomes, conformity to pluralism, and bureaucracy to real quality assurance. Targeting a full launch by summer 2028.",
+        "img": "/assets/news-gap-logo.png"
+      },
+      {
+        "kind": "Announcement",
+        "date": "Mar 2026",
+        "title": "Athos and Principled Business Introduce Breakthrough Builders to Fast-Track Funding for Early-Stage Social Ventures",
+        "text": "Breakthrough Builders is a new community of founders, philanthropists, and advisors committed to launching and funding the most promising early-stage social ventures.",
+        "img": "/assets/news-breakthrough-builders.png"
+      },
+      {
+        "kind": "Case study",
+        "date": "Since Aug 2025",
+        "story": "reach"
+      },
+      {
+        "kind": "Announcement",
+        "date": "2025",
+        "title": "The Athos Group Launches to Help Founders and Funders Build the Institutions of Tomorrow",
+        "text": "The renewal of society depends on the renewal of its institutions. Athos partners with visionaries to provide strategic vision, fundraising, and storytelling: taking institutions from 0 to 1 and 1 to 10.",
+        "img": "/assets/news-athos-launch.png"
+      }
+    ]
+  },
+  "contact": {
+    "title": "Let’s Build What Matters.",
+    "description": "We work with a select group of founders, organizations, and funders who are committed to building institutions that advance a free and flourishing society.",
+    "email": "chad@athosed.com"
+  },
+  "footer": "© 2026 The Athos Group, LLC. All rights reserved.",
+  "mountains": "/assets/option-1.png",
+  "seo": {
+    "title": "The Athos Group — From Idea to Impact",
+    "description": "Building and renewing the institutions that sustain a free and flourishing society."
+  }
+}

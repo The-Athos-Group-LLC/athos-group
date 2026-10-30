@@ -1,0 +1,506 @@
+/* Layout: a builder's portfolio. Headline, then every institution on one wall (bento), then quiet supporting sections on a 12-col grid.
+   Brand: Athos Visual Brand Brief (Sep 2026). Playfair Display Bold for headlines only, Avenir Next for every sentence.
+   Colours are the brief's five plus the revamp doc's vermilion; greys are navy/cream mixes. */
+:root {
+  --ground: #F9F5EE;   /* Cream: the page */
+  --paper: #FFFFFF;    /* White: plates and cards, for depth on cream */
+  --ink: #1D2B3A;      /* Navy: headlines, dark tiles */
+  --blue: #19385E;     /* Blue: alternate dark ground, hovers, gradients with navy */
+  --ink-2: #5B646C;    /* secondary text: navy 72% / cream */
+  --line: #DAD9D5;     /* frames: navy 14% / cream */
+  --well: #E7E5E0;     /* empty photo wells: navy 8% / cream */
+  --on-dark-2: #CDCCCA; /* secondary text on navy: cream 80% / navy */
+  --accent: #E94F24;   /* Vermilion (revamp doc), used sparingly */
+  --needed: #6B5B2E;   /* placeholder text */
+  --needed-bg: #F7EFD9;
+
+  --display: var(--f-display), "Playfair Display", Georgia, "Times New Roman", serif;
+  --body: "Avenir Next", "Avenir", var(--f-body), "Nunito Sans", system-ui, sans-serif;
+
+  --s-xs: 0.8125rem;  /* 13 */
+  --s-sm: 0.9375rem;  /* 15 */
+  --s-md: 1.0625rem;  /* 17 */
+  --s-lg: 1.3125rem;  /* 21 */
+  --s-xl: 1.75rem;    /* 28 */
+  --s-2xl: 2.5rem;    /* 40 */
+  --s-3xl: clamp(2.5rem, 5vw, 4rem);
+  --s-hero: clamp(3rem, 8.6vw, 7.75rem); /* a bit smaller (Jake, Oct 22) */
+
+  --wrap: 1320px;
+  --gut: max(16px, 3vw);
+  --section: clamp(56px, 7vw, 96px);
+
+  /* Hover motion (Oct 21: bigger, springier zoom on photos and cards, with a slight lift) */
+  --spring: cubic-bezier(0.16, 1, 0.3, 1);
+  --zoom: 1.09;
+  --zoom-soft: 1.06;   /* logos: a gentler zoom */
+  --zoom-t: 700ms;
+  --lift-y: -5px;
+  --lift: 0 24px 44px -22px rgba(29,43,58,0.42);
+  --tone-t: 500ms;     /* black-and-white to colour on people photos */
+}
+* { box-sizing: border-box; }
+html { color-scheme: light; scroll-behavior: smooth; }
+body {
+  margin: 0; background: var(--ground); color: var(--ink);
+  font-family: var(--body); font-size: var(--s-md); line-height: 1.55;
+  -webkit-font-smoothing: antialiased;
+}
+img { max-width: 100%; display: block; }
+a { color: inherit; }
+:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
+[hidden] { display: none !important; }
+h1, h2, h3 { font-family: var(--display); font-weight: 700; margin: 0; text-wrap: balance; letter-spacing: -0.005em; line-height: 1.1; }
+p { margin: 0; }
+
+.wrap { max-width: var(--wrap); margin: 0 auto; padding-left: var(--gut); padding-right: var(--gut); }
+.section { padding-block: var(--section); }
+.section + .section { padding-top: 0; }
+
+/* Header */
+.site-head { position: sticky; top: 0; z-index: 20; background: color-mix(in srgb, var(--ground) 92%, transparent); backdrop-filter: blur(8px); border-bottom: 1px solid var(--line); }
+.site-head .wrap { display: flex; align-items: center; justify-content: space-between; gap: 24px; min-height: 68px; }
+.brand { display: flex; align-items: center; text-decoration: none; flex-shrink: 0; }
+.brand img { height: 28px; width: auto; }
+.site-head .brand img { height: clamp(16px, 1.32vw, 19px); } /* tertiary one-line lockup; 19px tall = 273px wide, the size on the current athosed.com (Jake, Oct 22) */
+.nav { display: flex; gap: 4px; list-style: none; margin: 0; padding: 0; }
+.nav a { display: block; padding: 8px 12px; text-decoration: none; font-size: var(--s-sm); font-weight: 500; color: var(--ink-2); border-radius: 2px; position: relative; }
+.nav a:hover { color: var(--ink); }
+.nav a[aria-current="page"] { color: var(--ink); }
+.nav a[aria-current="page"]::after { content: ""; position: absolute; left: 12px; right: 12px; bottom: 2px; height: 2px; background: var(--accent); }
+
+/* Hero */
+.hero { position: relative; padding-block: clamp(40px, 6vw, 80px) clamp(32px, 4vw, 56px); overflow: hidden; }
+.hero-art { position: absolute; right: -6%; top: -4%; width: min(1100px, 90vw); filter: invert(1); mix-blend-mode: multiply; opacity: 0.16; pointer-events: none; }
+.hero-top { position: relative; display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); gap: 24px; align-items: end; margin-bottom: clamp(28px, 4vw, 48px); }
+.hero h1 { grid-column: 1 / span 8; font-size: var(--s-hero); letter-spacing: -0.02em; line-height: 0.98; }
+.hero-side { grid-column: 9 / span 4; display: grid; gap: 20px; padding-bottom: 0.6em; }
+.hero-side p { font-size: var(--s-lg); font-weight: 500; line-height: 1.4; color: var(--ink); max-width: 30ch; }
+.links { display: flex; flex-wrap: wrap; gap: 12px; }
+.btn { display: inline-flex; align-items: center; min-height: 44px; padding: 0 20px; background: var(--ink); color: var(--paper); text-decoration: none; font-weight: 700; font-size: var(--s-sm); border: 1px solid var(--ink); border-radius: 2px; cursor: pointer; font-family: var(--body); }
+.btn:hover { background: var(--accent); border-color: var(--accent); } /* vermilion on hover, as in the Oct 19 batch (Jake, Oct 22) */
+.btn.ghost { background: transparent; color: var(--ink); }
+.btn.ghost:hover { background: var(--ink); color: var(--paper); border-color: var(--ink); }
+
+/* Bento wall: eight stills, one per story (Jake, Oct 25). The six stories hold the big and middle boxes; the two open boxes for
+   the stories Athos adds next sit bottom right, the quietest spot on the wall. */
+.wall { position: relative; display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); grid-auto-rows: clamp(170px, 15vw, 220px); gap: 12px; }
+.t-mainstage { grid-column: 1 / span 7; grid-row: 1 / span 2; }
+.t-miller { grid-column: 8 / span 5; grid-row: 1 / span 2; }
+.t-gap { grid-column: 1 / span 7; grid-row: 3; }
+.t-reach { grid-column: 8 / span 5; grid-row: 3; }
+.t-academy { grid-column: 1 / span 4; grid-row: 4 / span 2; }
+.t-breakthrough { grid-column: 5 / span 4; grid-row: 4 / span 2; }
+.t-next-1 { grid-column: 9 / span 4; grid-row: 4; }
+.t-next-2 { grid-column: 9 / span 4; grid-row: 5; }
+.tile.slot { cursor: default; background: none; }
+.tile.slot:hover { transform: none; box-shadow: none; }
+
+.tile { position: relative; display: block; width: 100%; height: 100%; padding: 0; margin: 0; border: 0; background: var(--paper); color: var(--ink); text-align: left; font: inherit; cursor: pointer; overflow: hidden; border-radius: 2px; transition: transform var(--zoom-t) var(--spring), box-shadow var(--zoom-t) var(--spring); }
+.tile > img, .tile .ph-fill { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; transition: transform var(--zoom-t) var(--spring); }
+.tile:hover, .tile:focus-visible { z-index: 1; transform: translateY(var(--lift-y)); box-shadow: var(--lift); }
+.tile:hover > img, .tile:focus-visible > img { transform: scale(var(--zoom)); }
+.plate { position: absolute; left: 12px; bottom: 12px; max-width: min(88%, 420px); background: var(--paper); padding: 14px 16px 15px; display: grid; gap: 6px; box-shadow: 0 1px 0 rgba(29,43,58,0.08); }
+.logo-fill ~ .plate { box-shadow: none; } /* white tile: no hairline under the plate */
+.kicker { display: flex; align-items: baseline; justify-content: space-between; gap: 16px; font-size: var(--s-xs); font-weight: 700; color: var(--ink-2); letter-spacing: 0.01em; }
+.kicker .date { font-weight: 500; white-space: nowrap; font-variant-numeric: tabular-nums; }
+.plate .ttl { font-family: var(--display); font-size: 1.1875rem; line-height: 1.2; font-weight: 700; color: var(--ink); text-wrap: balance; }
+/* Captions rise in on hover or keyboard focus, so the wall reads as photos first (Jake, Oct 25).
+   Touch screens have no hover, so there the plates stay up. */
+@media (hover: hover) {
+  .wall .plate { opacity: 0; transform: translateY(10px); transition: opacity 260ms ease, transform 600ms var(--spring); }
+  .tile:hover .plate, .tile:focus-visible .plate { opacity: 1; transform: none; }
+  .wall .logo-fill { bottom: 0; } /* no plate to clear until hover, */
+  .wall .logo-fill img { transition: transform var(--zoom-t) var(--spring), opacity 300ms ease; }
+  .tile:hover .logo-fill img, .tile:focus-visible .logo-fill img { opacity: 0.14; } /* then the logo steps back behind it */
+}
+
+/* Placeholders: honest gaps */
+.needed-frame { position: absolute; inset: 0; background: var(--needed-bg); border: 1.5px dashed #C9B98A; display: grid; place-items: start; padding: 16px; }
+.needed-frame .note, .needed-tag { font-size: var(--s-xs); font-weight: 700; color: var(--needed); background: #F1E7C6; padding: 4px 8px; display: inline-block; line-height: 1.35; max-width: 34ch; }
+.needed-frame::before { content: ""; position: absolute; inset: 0; background: url("/assets/option-1.png") center 70% / cover no-repeat; filter: invert(1); mix-blend-mode: multiply; opacity: 0.12; }
+.needed-tag { margin-top: 4px; }
+.hold-tag { font-size: var(--s-xs); font-weight: 700; color: var(--paper); background: var(--ink); padding: 3px 8px; justify-self: start; }
+.tile > .hold-tag { position: absolute; top: 12px; right: 12px; z-index: 1; max-width: calc(100% - 24px); } /* a chip on the photo, so the plate stays small */
+
+.logo-fill { position: absolute; inset: 0 0 96px 0; background: var(--paper); padding: 12px 24px 0; }
+.logo-fill img { width: 100%; height: 100%; object-fit: contain; transition: transform var(--zoom-t) var(--spring); }
+.tile:hover .logo-fill img, .tile:focus-visible .logo-fill img { transform: scale(var(--zoom-soft)); }
+.fallback-note { position: absolute; left: 12px; top: 12px; z-index: 1; }
+.tile > img.fb-img { object-fit: contain; object-position: center 30%; background: #000; }
+
+/* Section heads */
+.head { display: grid; gap: 10px; margin-bottom: clamp(24px, 3vw, 40px); }
+.marker { font-size: var(--s-sm); font-weight: 700; color: var(--ink-2); display: flex; align-items: center; gap: 10px; }
+.marker::before { content: ""; width: 8px; height: 8px; background: var(--accent); }
+.head h2 { font-size: var(--s-3xl); }
+.who .head h2, .split .head h2 { font-size: clamp(2.25rem, 3.6vw, 3.25rem); }
+
+/* Who we are */
+.who { display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); gap: 24px; }
+.who .head { grid-column: 1 / span 4; grid-row: 1; align-content: start; margin-bottom: 16px; }
+.who .film { grid-column: 1 / span 5; grid-row: 2; }
+.who .copy { grid-column: 7 / span 6; grid-row: 1 / span 2; display: grid; gap: 18px; max-width: 68ch; align-content: start; }
+.who .lead { font-size: clamp(1.3125rem, 1rem + 1.4vw, 1.75rem); font-weight: 500; line-height: 1.35; letter-spacing: -0.005em; }
+.who .copy p:not(.lead) { color: var(--ink-2); }
+.textlink { font-weight: 700; text-decoration-color: var(--accent); text-underline-offset: 4px; text-decoration-thickness: 2px; }
+
+/* Their FreedomFest talk (Jake, Oct 25): a poster frame and a play button. The YouTube player loads only when it's clicked,
+   so a 15-minute talk costs the page one image. */
+.film { margin: 0; display: grid; gap: 14px; align-self: start; }
+.film .play { position: relative; display: block; width: 100%; aspect-ratio: 16 / 9; padding: 0; border: 0; border-radius: 2px; overflow: hidden; background: var(--ink); cursor: pointer; transition: transform var(--zoom-t) var(--spring), box-shadow var(--zoom-t) var(--spring); }
+.film .play img { width: 100%; height: 100%; object-fit: cover; transition: transform var(--zoom-t) var(--spring); }
+.film .play::after { content: ""; position: absolute; inset: 0; background: linear-gradient(to top, rgba(29,43,58,0.45), transparent 50%); pointer-events: none; }
+.film .play:hover, .film .play:focus-visible { transform: translateY(var(--lift-y)); box-shadow: var(--lift); }
+.film .play:hover img, .film .play:focus-visible img { transform: scale(var(--zoom-soft)); }
+.film .pb { position: absolute; left: 50%; top: 50%; z-index: 1; width: 76px; height: 76px; margin: -38px 0 0 -38px; border-radius: 50%; background: var(--paper); display: grid; place-items: center; box-shadow: 0 12px 30px -12px rgba(29,43,58,0.6); transition: background-color 300ms ease, transform 600ms var(--spring); }
+.film .pb svg { width: 22px; height: 22px; margin-left: 4px; fill: var(--ink); transition: fill 300ms ease; }
+.film .play:hover .pb, .film .play:focus-visible .pb { background: var(--accent); transform: scale(1.08); }
+.film .play:hover .pb svg, .film .play:focus-visible .pb svg { fill: var(--paper); }
+.film .dur { position: absolute; right: 12px; bottom: 12px; z-index: 1; background: rgba(29,43,58,0.82); color: var(--paper); font-size: var(--s-xs); font-weight: 700; padding: 3px 8px; font-variant-numeric: tabular-nums; }
+.film iframe { display: block; width: 100%; aspect-ratio: 16 / 9; border: 0; border-radius: 2px; background: var(--ink); }
+.film figcaption { display: grid; gap: 4px; }
+.film figcaption b { font-family: var(--display); font-weight: 700; font-size: var(--s-lg); line-height: 1.2; }
+.film figcaption span { font-size: var(--s-sm); color: var(--ink-2); }
+
+/* What We Build on Home, from Motion (Jake, Oct 25): the five Build steps as a climb up their mountain. The section pins while
+   you scroll through it; the idea point climbs the route camp to camp, and the step beside it changes with each camp. */
+.climb { position: relative; height: 220vh; }
+.climb-pin { position: sticky; top: 0; height: 100vh; height: 100svh; display: flex; align-items: center; overflow: hidden; padding-top: 68px; }
+.climb-grid { width: 100%; display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); gap: 24px; align-items: center; }
+.climb-text { grid-column: 1 / span 5; display: grid; gap: clamp(28px, 3.4vw, 44px); align-content: center; }
+.climb-text .head { margin-bottom: 0; }
+.climb-text .head h2 { font-size: clamp(2.25rem, 3.6vw, 3.25rem); max-width: 13ch; }
+.steps { list-style: none; margin: 0; padding: 0; display: grid; }
+/* One step at a time: the outgoing step clears, then the next arrives; two never overlap */
+.step { grid-area: 1 / 1; display: grid; gap: 10px; align-content: start; opacity: 0; transform: translateY(12px); transition: opacity 200ms ease, transform 400ms var(--spring); }
+.step.on { opacity: 1; transform: none; transition: opacity 400ms ease 160ms, transform 600ms var(--spring) 160ms; }
+.step.was { transform: translateY(-12px); }
+.step .num { font-size: var(--s-xs); font-weight: 700; letter-spacing: 0.08em; color: var(--ink-2); font-variant-numeric: tabular-nums; }
+.step h3 { font-size: clamp(1.5rem, 1.1rem + 0.9vw, 1.875rem); line-height: 1.15; }
+.step p { font-size: var(--s-lg); line-height: 1.45; color: var(--ink-2); max-width: 34ch; }
+.ticks { display: flex; gap: 8px; align-items: center; }
+.ticks span { width: 28px; height: 2px; background: rgba(29,43,58,0.16); transition: background-color 500ms ease; }
+.ticks span.on { background: var(--ink); }
+.climb-next { justify-self: start; display: inline-flex; align-items: center; gap: 10px; min-height: 44px; font-weight: 700; font-size: var(--s-sm); color: var(--ink); text-decoration: none; }
+.climb-next .w { text-decoration: underline; text-decoration-color: var(--accent); text-decoration-thickness: 2px; text-underline-offset: 4px; }
+.climb-next .ar { transition: transform 500ms var(--spring); }
+.climb-next:hover .ar { transform: translateX(4px); }
+.climb-art { grid-column: 6 / span 7; position: relative; aspect-ratio: 2000 / 1250; max-height: 72vh; justify-self: start; width: 112%;
+  -webkit-mask-image: linear-gradient(to right, transparent, #000 9%, #000 91%, transparent), linear-gradient(to bottom, #000 72%, transparent 98%); -webkit-mask-composite: source-in;
+  mask-image: linear-gradient(to right, transparent, #000 9%, #000 91%, transparent), linear-gradient(to bottom, #000 72%, transparent 98%); mask-composite: intersect; }
+.climb-art svg { position: absolute; inset: 0; width: 100%; height: 100%; overflow: visible; }
+.climb-art .mtn { stroke: var(--ink); stroke-opacity: 0.3; transition: stroke-opacity 900ms ease; }
+.climb-art .mtn .rg { stroke-opacity: 1; }
+.climb-art.done .mtn { stroke-opacity: 0.4; }
+.route-ahead { fill: none; stroke: var(--ink); stroke-opacity: 0.42; stroke-linecap: round; }
+.route-done { fill: none; stroke: var(--ink); stroke-linecap: round; stroke-linejoin: round; }
+.camp { fill: var(--ground); stroke: var(--ink); transition: fill 400ms ease; }
+.camp.on { fill: var(--ink); }
+.climb-pt { fill: var(--accent); }
+.climb-halo { fill: var(--accent); opacity: 0; transition: opacity 700ms ease; }
+.climb-art.done .climb-halo { opacity: 0.16; }
+
+/* Logo grid: four across, so today's 11 logos plus one open slot make three full rows */
+.logos { display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); grid-auto-rows: 1fr; gap: 12px; list-style: none; margin: 0; padding: 0; --logo-k: clamp(50px, 4.4vw, 64px); }
+.logos li { background: var(--paper); display: grid; grid-template-rows: auto 1fr; gap: 10px; padding: 16px 12px 14px; min-height: 148px; border-radius: 2px; transition: transform var(--zoom-t) var(--spring), box-shadow var(--zoom-t) var(--spring); }
+.logos li:not(.need):hover { transform: translateY(var(--lift-y)); box-shadow: var(--lift); }
+.logos .mark { display: grid; place-items: center; height: clamp(80px, 6.6vw, 96px); }
+/* Trimmed logos sized by area, not width, so a long wordmark and a square crest carry the same weight.
+   --sr is the square root of each image's width/height, set when it loads. */
+.logos .mark img { width: min(84%, calc(var(--logo-k) * var(--sr, 1.6))); height: auto; max-height: 100%; object-fit: contain; filter: grayscale(1); transition: transform var(--zoom-t) var(--spring); }
+.logos li:hover .mark img { transform: scale(var(--zoom-soft)); }
+.logos .nm { font-size: var(--s-xs); color: var(--ink-2); text-align: center; line-height: 1.35; }
+.logos li.need { background: var(--needed-bg); border: 1.5px dashed #C9B98A; }
+
+/* Quotes */
+.quotes { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; }
+.quote { background: var(--paper); padding: clamp(22px, 3vw, 36px); display: grid; gap: 20px; align-content: space-between; border-radius: 2px; margin: 0; }
+.quote blockquote { margin: 0; font-size: var(--s-lg); font-weight: 500; line-height: 1.5; }
+.quote blockquote::before { content: "“"; display: block; font-family: var(--display); font-weight: 700; font-size: 4.5rem; line-height: 0.6; height: 0.42em; color: var(--accent); }
+.quote figcaption { font-size: var(--s-sm); display: grid; gap: 2px; }
+.quote figcaption b { font-weight: 700; }
+.quote figcaption span { color: var(--ink-2); }
+.quote.need { background: var(--needed-bg); border: 1.5px dashed #C9B98A; }
+
+/* Partners */
+.partners { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; }
+/* People photos are black and white and turn full colour on hover or keyboard focus, like the current site */
+.partner { background: var(--paper); display: grid; grid-template-columns: minmax(0, 2fr) minmax(0, 3fr); border-radius: 2px; overflow: hidden; transition: transform var(--zoom-t) var(--spring), box-shadow var(--zoom-t) var(--spring); }
+.partner .pp { position: relative; overflow: hidden; aspect-ratio: 4 / 5; }
+.partner img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; filter: grayscale(1) contrast(1.05); transition: filter var(--tone-t) ease, transform var(--zoom-t) var(--spring); }
+.partner:hover, .partner:focus-visible { transform: translateY(var(--lift-y)); box-shadow: var(--lift); }
+.partner:hover img, .partner:focus-within img { filter: grayscale(0) contrast(1); transform: scale(var(--zoom)); }
+.partner .pc { padding: clamp(18px, 2.4vw, 32px); display: grid; align-content: end; gap: 8px; }
+.partner h3 { font-size: var(--s-xl); }
+.role { font-size: var(--s-sm); font-weight: 700; color: var(--ink-2); }
+.partner p:not(.role) { font-size: var(--s-sm); color: var(--ink-2); max-width: 52ch; }
+
+/* Contact band */
+.band { background: linear-gradient(120deg, var(--ink) 35%, var(--blue)); color: var(--ground); position: relative; overflow: hidden; }
+.band .wrap { position: relative; padding-block: clamp(72px, 9vw, 132px) clamp(40px, 4.4vw, 60px); display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); gap: 24px; align-items: end; }
+/* Their mountain in cream lines, drawn stroke by stroke as the band scrolls into view (from Motion, Jake Oct 22) */
+.band-art { position: absolute; right: -6%; bottom: -14%; width: min(1180px, 110vw); aspect-ratio: 3258 / 1291; pointer-events: none; }
+.band-art svg, .band-art img { position: absolute; inset: 0; width: 100%; height: 100%; overflow: visible; }
+.band-art .mtn { stroke: var(--ground); stroke-opacity: 0.2; }
+.band-art path { stroke-dashoffset: var(--off); transition: stroke-dashoffset 1300ms cubic-bezier(0.16, 1, 0.3, 1) var(--d); }
+.band-art.drawn path { stroke-dashoffset: 0; }
+.band-art img { filter: invert(1); opacity: 0.5; }
+.band .sign { grid-column: 1 / -1; margin-top: clamp(28px, 4vw, 52px); display: flex; align-items: center; gap: 16px; }
+.band .sign img { height: 18px; width: auto; flex-shrink: 0; }
+.band .sign::after { content: ""; flex: 1; height: 1px; background: rgba(249,245,238,0.18); }
+.band h2 { grid-column: 1 / span 7; font-size: var(--s-3xl); color: var(--ground); }
+.band .bc { grid-column: 8 / span 5; display: grid; gap: 20px; }
+.band p { color: var(--on-dark-2); max-width: 46ch; }
+/* 19px bold is large text, so white on vermilion (3.7:1) clears AA */
+.band .btn { background: var(--accent); border-color: var(--accent); justify-self: start; font-size: 1.1875rem; min-height: 52px; padding: 0 24px; }
+.band .btn:hover { background: var(--paper); color: var(--ink); border-color: var(--paper); }
+
+/* Page titles */
+.page-title { padding-block: clamp(48px, 6vw, 88px) clamp(28px, 3vw, 44px); position: relative; overflow: hidden; }
+.page-title h1 { position: relative; font-size: clamp(2.75rem, 6.6vw, 5.75rem); letter-spacing: -0.02em; line-height: 1; max-width: 14ch; }
+.page-title p { position: relative; margin-top: 20px; font-size: var(--s-lg); font-weight: 500; color: var(--ink-2); max-width: 54ch; }
+/* Their mountain, traced to clean vector, sits faintly behind every page title except home (from Motion, Jake Oct 22) */
+.page-title .pt-art { position: absolute; right: -4%; bottom: -18%; width: min(980px, 80vw); opacity: 0.11; pointer-events: none;
+  -webkit-mask-image: linear-gradient(to bottom, #000 40%, transparent 78%); mask-image: linear-gradient(to bottom, #000 40%, transparent 78%); }
+
+/* About */
+.split { display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); gap: 24px; }
+.split .head { grid-column: 1 / span 4; align-content: start; }
+.split .body { grid-column: 6 / span 7; display: grid; gap: 16px; max-width: 68ch; }
+.split .body .big { font-size: clamp(1.1875rem, 1rem + 1vw, 1.5rem); font-weight: 500; line-height: 1.45; letter-spacing: -0.005em; }
+/* Image slots Athos still has to supply (people photo, mission image, build intro image) */
+.frame { position: relative; aspect-ratio: 3 / 2; border-radius: 2px; overflow: hidden; }
+.frame > img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+.split.mission .frame > img { object-position: center 64%; } /* a portrait photo in a landscape slot: keep the table */
+.people-sec { padding-bottom: clamp(80px, 10vw, 144px); } /* the people block closes before the mission starts */
+.split.people { align-items: center; margin-bottom: clamp(40px, 5vw, 64px); }
+.split.people .frame { grid-column: 1 / span 5; }
+.split.people .body { grid-column: 7 / span 6; }
+.split.mission { align-items: center; }
+.split.mission .body { grid-column: 1 / span 6; gap: 20px; }
+.split.mission .head { margin-bottom: 0; }
+.split.mission .frame { grid-column: 8 / span 5; aspect-ratio: 4 / 3; }
+/* Oct 21: clearly more air between the founding partners and the rest of the team */
+.team { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 12px; margin-top: clamp(64px, 7vw, 96px); }
+.person { background: var(--paper); border-radius: 2px; overflow: hidden; display: grid; grid-template-rows: auto 1fr; transition: transform var(--zoom-t) var(--spring), box-shadow var(--zoom-t) var(--spring); }
+.person:hover, .person:focus-visible { transform: translateY(var(--lift-y)); box-shadow: var(--lift); }
+.person .ph { aspect-ratio: 1; background: var(--well); display: grid; place-items: center; overflow: hidden; }
+.person .ph img { width: 100%; height: 100%; object-fit: cover; filter: grayscale(1); transition: filter var(--tone-t) ease, transform var(--zoom-t) var(--spring); }
+.person:hover .ph img, .person:focus-within .ph img { filter: grayscale(0); transform: scale(var(--zoom)); }
+.person .ph .mono { font-family: var(--display); font-weight: 700; font-size: 3rem; color: var(--ink-2); }
+.person .pb { padding: 16px; display: grid; gap: 6px; align-content: start; }
+.person h3 { font-size: var(--s-lg); }
+.person .role { font-size: var(--s-xs); }
+.person p.bio { font-size: var(--s-xs); color: var(--ink-2); line-height: 1.5; }
+.person.need .ph { background: var(--needed-bg); border-bottom: 1.5px dashed #C9B98A; }
+
+.principles { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; list-style: none; padding: 0; margin: 0; }
+.principles li { background: var(--paper); padding: clamp(20px, 2.6vw, 32px); display: grid; gap: 10px; border-radius: 2px; }
+.principles li:first-child { grid-column: 1 / -1; }
+.principles h3 { font-size: var(--s-xl); }
+.principles p { color: var(--ink-2); max-width: 62ch; }
+
+/* What we build */
+.build-intro { display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); gap: 24px; align-items: center; }
+.build-intro .intro { grid-column: 1 / span 7; }
+.build-intro .frame { grid-column: 8 / span 5; aspect-ratio: 4 / 3; }
+.intro { display: grid; gap: 14px; max-width: 64ch; }
+.intro p:first-child { font-size: clamp(1.1875rem, 1rem + 1vw, 1.5rem); font-weight: 500; line-height: 1.4; letter-spacing: -0.005em; }
+.intro p:not(:first-child) { color: var(--ink-2); }
+.areas { display: grid; gap: 12px; }
+.area { background: var(--paper); border-radius: 2px; padding: clamp(22px, 3vw, 40px); display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); gap: 24px; }
+.area .ah { grid-column: 1 / span 4; display: flex; flex-direction: column; gap: 14px; }
+.area .word { font-family: var(--display); font-weight: 700; font-size: clamp(2.75rem, 5vw, 4.5rem); line-height: 0.95; letter-spacing: -0.02em; color: var(--ink); }
+.area h2 { font-size: var(--s-xl); }
+.ctx { color: var(--ink-2); font-size: var(--s-sm); max-width: 48ch; }
+.ctx-btn { align-self: flex-start; display: inline-flex; align-items: center; gap: 8px; min-height: 40px; background: none; border: 1px solid var(--line); padding: 8px 12px; font: 600 var(--s-sm) var(--body); color: var(--ink); cursor: pointer; border-radius: 2px; transition: border-color 200ms ease; }
+.ctx-btn:hover { border-color: var(--ink); }
+.ctx-btn .chev { width: 8px; height: 8px; border-right: 2px solid var(--accent); border-bottom: 2px solid var(--accent); transform: rotate(45deg) translateY(-2px); transition: transform 200ms ease; }
+.ctx-btn[aria-expanded="true"] .chev { transform: rotate(-135deg) translateY(-1px); }
+/* "See it in action" sits bottom-left of the left column; until Athos sends the LinkedIn link it's an honest, inert button */
+.area .act { margin-top: auto; padding-top: 10px; display: flex; flex-wrap: wrap; align-items: center; gap: 10px 12px; }
+.area .act .needed-tag { margin-top: 0; }
+.btn.pending { cursor: default; }
+.btn.pending:hover { background: var(--ink); border-color: var(--ink); }
+.area ul { grid-column: 5 / span 8; list-style: none; padding: 0; margin: 0; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0 24px; }
+.area li { padding: 16px 0; border-top: 1px solid var(--line); display: grid; gap: 4px; align-content: start; }
+.area li b { font-weight: 700; }
+.area li span { color: var(--ink-2); font-size: var(--s-sm); }
+
+/* Ideas */
+.cards { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; }
+.card { background: var(--paper); border-radius: 2px; overflow: hidden; display: grid; grid-template-rows: auto 1fr; text-align: left; border: 0; padding: 0; font: inherit; color: inherit; transition: transform var(--zoom-t) var(--spring), box-shadow var(--zoom-t) var(--spring); }
+button.card { cursor: pointer; }
+.card:hover, .card:focus-visible { transform: translateY(var(--lift-y)); box-shadow: var(--lift); }
+.card .cm { aspect-ratio: 16 / 10; position: relative; overflow: hidden; background: var(--ground); }
+.card .cm img { width: 100%; height: 100%; object-fit: cover; transition: transform var(--zoom-t) var(--spring); }
+.card:hover .cm img, .card:focus-visible .cm img { transform: scale(var(--zoom)); }
+.card .cm.logo img { object-fit: contain; background: var(--paper); }
+.card .cb { padding: 18px 18px 22px; display: grid; gap: 8px; align-content: start; }
+.card h3 { font-size: var(--s-lg); line-height: 1.2; }
+.card p { font-size: var(--s-sm); color: var(--ink-2); display: -webkit-box; -webkit-line-clamp: 4; -webkit-box-orient: vertical; overflow: hidden; }
+
+/* Contact */
+.contact { display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); gap: 24px; }
+.contact .info { grid-column: 1 / span 5; display: grid; gap: 18px; align-content: start; }
+.contact .info p { color: var(--ink-2); max-width: 44ch; }
+.email { display: flex; flex-wrap: wrap; align-items: center; gap: 12px; }
+.email code { font-family: var(--body); font-weight: 500; font-size: var(--s-xl); user-select: all; }
+.contact .info .desc { font-size: clamp(1.1875rem, 1rem + 1vw, 1.5rem); font-weight: 500; line-height: 1.4; color: var(--ink); }
+.copy-btn { background: none; border: 1px solid var(--line); padding: 6px 10px; font: 700 var(--s-xs) var(--body); cursor: pointer; border-radius: 2px; color: var(--ink); }
+form { grid-column: 7 / span 6; background: var(--paper); padding: clamp(22px, 3vw, 36px); display: grid; gap: 16px; border-radius: 2px; }
+label { display: grid; gap: 6px; font-size: var(--s-sm); font-weight: 700; }
+input, textarea { font: inherit; font-weight: 400; padding: 12px 14px; border: 1px solid var(--line); border-radius: 2px; background: var(--ground); color: var(--ink); width: 100%; }
+input:focus, textarea:focus { outline: 2px solid var(--accent); outline-offset: 0; border-color: transparent; }
+textarea { min-height: 140px; resize: vertical; }
+.form-note { font-size: var(--s-sm); font-weight: 700; color: var(--needed); background: var(--needed-bg); border: 1.5px dashed #C9B98A; padding: 10px 12px; }
+
+/* Footer */
+.foot { border-top: 1px solid var(--line); }
+.foot .wrap { padding-block: 32px; display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 16px; font-size: var(--s-xs); color: var(--ink-2); }
+.foot .brand img { height: 56px; }
+.foot nav { display: flex; flex-wrap: wrap; gap: 16px; }
+.foot nav a { text-decoration: none; }
+.foot nav a:hover { color: var(--ink); }
+
+/* Dialog */
+dialog { border: 0; padding: 0; width: min(920px, calc(100vw - 32px)); max-height: calc(100vh - 32px); background: var(--paper); color: var(--ink); border-radius: 2px; }
+dialog::backdrop { background: rgba(29,43,58,0.72); }
+.dlg { display: grid; grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr); }
+.dlg .media { background: var(--ground); display: grid; gap: 8px; align-content: start; position: relative; min-height: 280px; }
+.dlg .media img { width: 100%; height: auto; }
+/* Side by side, one photo fills its column instead of leaving cream under it (stacked on phones, it keeps its own height) */
+@media (min-width: 861px) { .dlg .media:has(> img:only-child) img { position: absolute; inset: 0; height: 100%; object-fit: cover; } }
+.dlg .media.logo img { padding: 24px; background: var(--paper); }
+.dlg .media .needed-frame { position: relative; min-height: 320px; }
+.dlg .txt { padding: clamp(22px, 3vw, 36px); display: grid; gap: 14px; align-content: start; }
+.dlg .txt > .kicker { margin-right: 40px; } /* clear the close button */
+.dlg h2 { font-size: clamp(1.75rem, 1.2rem + 2.4vw, 2.5rem); }
+.dlg .cap { color: var(--ink-2); }
+.dlg .more { margin-top: 6px; }
+.dlg-close { position: absolute; top: 10px; right: 10px; z-index: 2; width: 40px; height: 40px; border: 0; background: var(--ink); color: var(--paper); font: 700 1.25rem var(--body); cursor: pointer; border-radius: 2px; }
+
+/* Mockup tag */
+.mock-tag { position: fixed; left: max(12px, env(safe-area-inset-left, 0px)); bottom: max(12px, env(safe-area-inset-bottom, 0px)); z-index: 30; background: var(--ink); color: var(--paper); font-size: var(--s-xs); font-weight: 700; padding: 8px 12px; text-decoration: none; border-radius: 2px; box-shadow: 0 2px 8px rgba(29,43,58,0.25); }
+.mock-tag:hover { background: var(--accent); }
+
+/* Responsive */
+@media (max-width: 1080px) {
+  .logos { grid-template-columns: repeat(3, minmax(0, 1fr)); --logo-k: clamp(56px, 7vw, 72px); }
+  .partner { grid-template-columns: 1fr; }
+  .partner .pp { aspect-ratio: 1; }
+  /* Team: compact cards (photo beside name and role, bio full width under), two across, so bios never become narrow towers */
+  .team { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .person { grid-template-columns: 112px minmax(0, 1fr); grid-template-rows: auto auto 1fr; gap: 4px 16px; padding: 16px; }
+  .person .pb { display: contents; }
+  .person .ph { grid-column: 1; grid-row: 1 / span 2; border-radius: 2px; }
+  .person h3 { grid-column: 2; align-self: end; }
+  .person .role { grid-column: 2; align-self: start; }
+  .person p.bio, .person .pb > .needed-tag { grid-column: 1 / -1; justify-self: start; margin-top: 12px; }
+  .person p.bio { font-size: var(--s-sm); }
+  .person.need .ph { border: 1.5px dashed #C9B98A; }
+}
+/* Mid widths: Playfair plates wrap to more lines, so give the one-row tiles room for the GAP logo above its plate */
+@media (min-width: 861px) and (max-width: 1180px) {
+  .wall { grid-auto-rows: 210px; }
+  .logo-fill { bottom: 132px; }
+}
+@media (max-width: 860px) {
+  .band-art { width: 180vw; right: -50vw; bottom: -6%; }
+  .site-head .wrap { flex-direction: column; align-items: stretch; gap: 4px; padding-block: 10px; }
+  .nav { overflow-x: auto; margin: 0 -8px; scrollbar-width: none; }
+  .nav a { white-space: nowrap; min-height: 44px; display: flex; align-items: center; }
+  .nav a[aria-current="page"]::after { bottom: 4px; }
+  .nav a:focus-visible { outline-offset: -2px; } /* inset ring: the scrolling strip would clip an outer one */
+  .foot nav { gap: 0 20px; }
+  .foot nav a { padding: 12px 0; }
+  .hero-top, .who, .split, .contact, .band .wrap, .area, .build-intro, .climb-grid { grid-template-columns: 1fr; }
+  .hero h1, .hero-side, .who .head, .who .film, .who .copy, .split .head, .split .body, .split .frame, .build-intro .intro, .build-intro .frame, .contact .info, form, .band h2, .band .bc, .area .ah, .area ul { grid-column: 1 / -1; }
+  .who .head, .who .film, .who .copy { grid-row: auto; } /* heading, then the talk, then the copy */
+  .who .film { margin-bottom: 12px; }
+  .split.people .frame, .split.people .body, .split.mission .body, .split.mission .frame { grid-column: 1 / -1; }
+  .split.people { gap: 20px; }
+  .split.people .frame, .split.mission .frame, .build-intro .frame { aspect-ratio: 16 / 9; } /* stacked: wide slots, so placeholders don't dominate */
+  .wall { grid-template-columns: 1fr 1fr; grid-auto-rows: auto; }
+  .wall > * { grid-column: auto / span 1 !important; grid-row: auto !important; aspect-ratio: 4 / 5; }
+  .t-mainstage, .t-miller { grid-column: 1 / -1 !important; }
+  .t-mainstage { aspect-ratio: 4 / 5 !important; }
+  .t-miller { aspect-ratio: 16 / 10 !important; }
+  .wall > .slot { aspect-ratio: 16 / 9 !important; } /* open boxes stay short so they never fill a phone screen */
+  /* The climb on a phone: heading, drawing, step and ticks pinned together under the two-row header */
+  .climb { height: 250vh; }
+  .climb-pin { align-items: stretch; padding-top: 104px; padding-bottom: 16px; }
+  .climb-grid { grid-template-rows: auto auto auto auto auto; align-content: start; gap: 12px; }
+  .climb-text { display: contents; }
+  .climb-text .head { grid-row: 1; gap: 10px; }
+  .climb-text .head h2 { font-size: 1.875rem; max-width: 18ch; }
+  .climb-art { grid-row: 2; grid-column: 1; width: min(calc(100% + 32px), 32svh * 1.6); justify-self: center; max-height: none; }
+  .climb-text .steps { grid-row: 3; }
+  .climb-text .ticks { grid-row: 4; }
+  .climb-text .climb-next { grid-row: 5; }
+  .step { gap: 6px; }
+  .step p { font-size: var(--s-md); }
+  .step h3 { font-size: 1.5rem; }
+  .quotes, .partners, .principles { grid-template-columns: 1fr; }
+  /* One partner per row again, so back to the side-by-side card rather than a screen-filling photo */
+  .partner { grid-template-columns: minmax(0, 2fr) minmax(0, 3fr); }
+  .partner .pp { aspect-ratio: 4 / 5; }
+  .cards { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .dlg { grid-template-columns: 1fr; }
+  .dlg .media { min-height: 0; }
+  .dlg .txt > .kicker { margin-right: 0; }
+}
+@media (max-width: 560px) {
+  /* Phone: the nav strip scrolls sideways; soft edges show there's more */
+  .nav { padding-right: 20px; -webkit-mask-image: linear-gradient(to right, transparent, #000 10px, #000 calc(100% - 28px), transparent); mask-image: linear-gradient(to right, transparent, #000 10px, #000 calc(100% - 28px), transparent); }
+  .wall { grid-template-columns: 1fr; }
+  .wall > * { aspect-ratio: 4 / 4.2; }
+  .t-miller, .t-gap { aspect-ratio: 4 / 3 !important; }
+  .plate { max-width: calc(100% - 24px); right: 12px; }
+  .wall > .slot { aspect-ratio: 16 / 7 !important; }
+  .logos { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .partner { grid-template-columns: 1fr; }
+  .partner .pp { aspect-ratio: 5 / 4; }
+  .partner img { object-position: center 30%; }
+  .team, .cards { grid-template-columns: 1fr; }
+  .area ul { grid-template-columns: 1fr; }
+  .plate .ttl { font-size: 1.125rem; }
+}
+/* Short laptop screens (1280x720 and the like): the pinned climb tightens up */
+@media (min-width: 861px) and (max-height: 820px) {
+  .climb-pin { padding-top: 88px; padding-bottom: 16px; }
+  .climb-text { gap: 22px; }
+  .climb-text .head { gap: 10px; }
+  .climb-text .head h2 { font-size: clamp(2rem, 1.2rem + 2vw, 2.75rem); }
+  .step p { font-size: var(--s-md); }
+  .climb-next { min-height: 36px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  /* No zoom, no lift, no fades; photos still turn to colour on hover/focus */
+  :root { --zoom: 1; --zoom-soft: 1; --lift-y: 0px; --zoom-t: 0ms; --tone-t: 0ms; }
+  .band-art path { transition: none; }
+  .wall .plate { transform: none; transition: none; }
+  /* The climb, still: the whole route drawn and all five steps listed */
+  .climb { height: auto; }
+  .climb-pin { position: relative; height: auto; padding-block: var(--section); overflow: visible; }
+  .steps { gap: 28px; }
+  .step { grid-area: auto; opacity: 1; transform: none; transition: none; }
+  .ticks { display: none; }
+}
+@media (prefers-reduced-motion: reduce) and (max-width: 860px) {
+  .climb-pin { padding-top: var(--section); }
+  .climb-art { width: 100%; }
+}
+
+/* ---- Live site (the mockup showed "needed" notes; production never does) ---- */
+.needed-frame { background: var(--well); border: 0; }
+.film.still .play { cursor: default; }
+.film.still .play:hover, .film.still .play:focus-visible { transform: none; box-shadow: none; }
+.film.still .play:hover img { transform: none; }
+.film.still .play::after { display: none; }
+a.card { color: inherit; text-decoration: none; }
+.form-note { color: var(--ink); background: var(--paper); border: 1px solid var(--line); }
+.form-note.err { color: #9B2C1A; border-color: #E5B4A8; }
+#contact-form[aria-busy="true"] button[type="submit"] { opacity: 0.6; pointer-events: none; }

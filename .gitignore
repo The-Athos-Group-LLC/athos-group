@@ -46,3 +46,7 @@ next-env.d.ts
 
 # outstatic generated types
 /.outstatic/
+
+# editor content when running locally (on Vercel it lives in Blob)
+/.content/
+/public/uploads-local/

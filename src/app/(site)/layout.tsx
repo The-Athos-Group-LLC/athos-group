@@ -1,60 +1,37 @@
 import type { Metadata } from "next";
-import { Playfair_Display, Inter } from "next/font/google";
-import "./globals.css";
-import { getPage } from "@/lib/cms";
+import Script from "next/script";
+import { Nunito_Sans, Playfair_Display } from "next/font/google";
+import { getContent } from "@/lib/content";
+import "./site.css";
 
-const playfair = Playfair_Display({
-  variable: "--font-playfair",
-  subsets: ["latin"],
-  weight: ["400", "500", "600", "700", "800", "900"],
-  style: ["normal", "italic"],
-});
+// Brand: Playfair Display Bold for headlines. Avenir Next is the brand body face; visitors who don't have it
+// installed get Nunito Sans, its closest free match (see --body in site.css).
+const display = Playfair_Display({ subsets: ["latin"], weight: "700", variable: "--f-display" });
+const body = Nunito_Sans({ subsets: ["latin"], weight: ["400", "500", "700"], variable: "--f-body" });
 
-const inter = Inter({
-  variable: "--font-inter",
-  subsets: ["latin"],
-  weight: ["300", "400", "500", "600"],
-});
-
-
-export function generateMetadata(): Metadata {
-  const site = getPage("site");
-
+export async function generateMetadata(): Promise<Metadata> {
+  const A = await getContent();
   return {
-    title: site.seoTitle,
-    description: site.seoDescription,
-    icons: {
-      icon: [
-        {
-          url: "/images/favicon-black.png",
-          media: "(prefers-color-scheme: light)",
-        },
-        {
-          url: "/images/favicon-white.png",
-          media: "(prefers-color-scheme: dark)",
-        },
-      ],
-      apple: "/images/favicon-white.png",
-    },
+    metadataBase: new URL("https://www.athosed.com"),
+    title: A.seo?.title,
+    description: A.seo?.description,
     openGraph: {
-      title: site.siteName,
-      description: site.seoDescription,
+      title: A.seo?.title,
+      description: A.seo?.description,
+      siteName: "The Athos Group",
       type: "website",
+      images: [{ url: "/assets/oct25/about-builders.jpg" }],
     },
   };
 }
 
-export default function RootLayout({
-  children,
-}: Readonly<{
-  children: React.ReactNode;
-}>) {
+export default function SiteLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html
-      lang="en"
-      className={`${playfair.variable} ${inter.variable} h-full`}
-    >
-      <body className="min-h-full flex flex-col antialiased">{children}</body>
+    <html lang="en" className={`${display.variable} ${body.variable}`}>
+      <body>
+        {children}
+        <Script src="/site.js" strategy="afterInteractive" />
+      </body>
     </html>
   );
 }
